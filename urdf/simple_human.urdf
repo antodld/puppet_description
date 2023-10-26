@@ -1,0 +1,364 @@
+<robot name="HUMAN">
+
+  <link name="base_link" />
+
+  <joint name="base" type="fixed">
+    <parent link="base_link" />
+    <child link="TORSO_LINK" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+  </joint>
+
+    
+  <link name="TORSO_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. 0.2" />
+      <geometry>
+        <box size="0.1 0.3 0.4" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0. 0. 0.2" />
+      <geometry>
+        <box size="0.1 0.3 0.4" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="HEAD_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.05" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.05" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="L_ARM_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. -0.1" />
+      <geometry>
+        <cylinder length="0.2" radius="0.025" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0. 0. -0.1" />
+      <geometry>
+        <cylinder length="0.2" radius="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+  
+
+  <link name="L_FOREARM_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. -0.125" />
+      <geometry>
+        <cylinder length="0.25" radius="0.025" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0. 0. -0.125" />
+      <geometry>
+        <cylinder length="0.25" radius="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="L_HAND_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.025" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0. 0. -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="R_ARM_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. -0.1" />
+      <geometry>
+        <cylinder length="0.2" radius="0.025" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0. 0. -0.1" />
+      <geometry>
+        <cylinder length="0.2" radius="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+  
+
+  <link name="R_FOREARM_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. -0.125" />
+      <geometry>
+        <cylinder length="0.25" radius="0.025" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0. 0. -0.125" />
+      <geometry>
+        <cylinder length="0.25" radius="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="R_HAND_LINK">
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.025" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0. 0. -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+ 
+  
+  
+  <link name="HEAD_R_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.05" />
+      <inertia ixx="0.000002" ixy="0.0" ixz="0.0" iyy="0.000002" iyz="0.0" izz="0.000002" />
+    </inertial>
+  </link>
+
+  <link name="HEAD_P_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.05" />
+      <inertia ixx="0.000002" ixy="0.0" ixz="0.0" iyy="0.000002" iyz="0.0" izz="0.000002" />
+    </inertial>
+  </link>
+
+  <joint name="HEAD_R" type="revolute">
+    <parent link="TORSO_LINK" />
+    <child link="HEAD_R_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0. 0.45" />
+    <axis xyz="1 0 0" />
+    <limit effort="100" lower="-0.62" upper="0.62" velocity="100" />
+  </joint>
+
+  <joint name="HEAD_P" type="revolute">
+    <parent link="HEAD_R_LINK" />
+    <child link="HEAD_P_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="-0.0 0.0 0.0" />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-0.45" upper="0.45" velocity="100" />
+  </joint>
+
+  <joint name="HEAD_Y" type="revolute">
+    <parent link="HEAD_P_LINK" />
+    <child link="HEAD_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="-0.0 0.0 0.0" />
+    <axis xyz="0 0 1" />
+    <limit effort="100" lower="-1.1" upper="1.1" velocity="100" />
+  </joint>
+
+  
+  <link name="L_SHOULDER_R_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.2" />
+      <inertia ixx="0.0000032" ixy="0.0" ixz="0.0" iyy="0.0000032" iyz="0.0" izz="0.0000032" />
+    </inertial>
+  </link>
+
+  <link name="L_SHOULDER_P_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.2" />
+      <inertia ixx="0.0000032" ixy="0.0" ixz="0.0" iyy="0.0000032" iyz="0.0" izz="0.0000032" />
+    </inertial>
+  </link>
+
+  <joint name="L_SHOULDER_R" type="revolute">
+    <parent link="TORSO_LINK" />
+    <child link="L_SHOULDER_R_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0.175 0.4" />
+    <axis xyz="1 0 0" />
+    <limit effort="100" lower="-1.42" upper="1.57" velocity="100" />
+  </joint>
+
+  <joint name="L_SHOULDER_P" type="revolute">
+    <parent link="L_SHOULDER_R_LINK" />
+    <child link="L_SHOULDER_P_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="-0.0 0.0 0." />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-1.2" upper="1.2" velocity="100" />
+  </joint>
+
+  <joint name="L_SHOULDER_Y" type="revolute">
+    <parent link="L_SHOULDER_P_LINK" />
+    <child link="L_ARM_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="-0.0 0.0 0.0" />
+    <axis xyz="0 0 1" />
+    <limit effort="100" lower="-2.8" upper="0.9" velocity="100" />
+  </joint>
+
+
+  <joint name="L_ELBOW_P" type="revolute">
+    <parent link="L_ARM_LINK" />
+    <child link="L_FOREARM_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0. -0.2" />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-1.57" upper="1.0" velocity="100" />
+  </joint>
+
+  
+  <link name="L_WRIST_R_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.05" />
+      <inertia ixx="0.000002" ixy="0.0" ixz="0.0" iyy="0.000002" iyz="0.0" izz="0.000002" />
+    </inertial>
+  </link>
+
+
+  <joint name="L_WRIST_R" type="revolute">
+    <parent link="L_FOREARM_LINK" />
+    <child link="L_WRIST_R_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0. -0.25" />
+    <axis xyz="1 0 0" />
+    <limit effort="100" lower="-1.5" upper="1.5" velocity="100" />
+  </joint>
+
+
+  <link name="L_WRIST_P_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.05" />
+      <inertia ixx="0.000002" ixy="0.0" ixz="0.0" iyy="0.000002" iyz="0.0" izz="0.000002" />
+    </inertial>
+  </link>
+
+  <joint name="L_WRIST_P" type="revolute">
+    <parent link="L_WRIST_R_LINK" />
+    <child link="L_WRIST_P_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0. 0." />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-1.5" upper="1.5" velocity="100" />
+  </joint>
+
+  <joint name="L_WRIST_Y" type="revolute">
+    <parent link="L_WRIST_P_LINK" />
+    <child link="L_HAND_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0." />
+    <axis xyz="0 0 1" />
+    <limit effort="100" lower="-0.35" upper="0.35" velocity="100" />
+  </joint>
+
+  
+  <link name="R_SHOULDER_R_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.2" />
+      <inertia ixx="0.0000032" ixy="0.0" ixz="0.0" iyy="0.0000032" iyz="0.0" izz="0.0000032" />
+    </inertial>
+  </link>
+
+  <link name="R_SHOULDER_P_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.2" />
+      <inertia ixx="0.0000032" ixy="0.0" ixz="0.0" iyy="0.0000032" iyz="0.0" izz="0.0000032" />
+    </inertial>
+  </link>
+
+  <joint name="R_SHOULDER_R" type="revolute">
+    <parent link="TORSO_LINK" />
+    <child link="R_SHOULDER_R_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. -0.175 0.4" />
+    <axis xyz="1 0 0" />
+    <limit effort="100" lower="-1.42" upper="1.57" velocity="100" />
+  </joint>
+
+  <joint name="R_SHOULDER_P" type="revolute">
+    <parent link="R_SHOULDER_R_LINK" />
+    <child link="R_SHOULDER_P_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="-0.0 0.0 0." />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-1.2" upper="1.2" velocity="100" />
+  </joint>
+
+  <joint name="R_SHOULDER_Y" type="revolute">
+    <parent link="R_SHOULDER_P_LINK" />
+    <child link="R_ARM_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="-0.0 0.0 0.0" />
+    <axis xyz="0 0 1" />
+    <limit effort="100" lower="-2.8" upper="0.9" velocity="100" />
+  </joint>
+
+
+  <joint name="R_ELBOW_P" type="revolute">
+    <parent link="R_ARM_LINK" />
+    <child link="R_FOREARM_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0. -0.2" />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-1.57" upper="1.0" velocity="100" />
+  </joint>
+
+  
+  <link name="R_WRIST_R_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.05" />
+      <inertia ixx="0.000002" ixy="0.0" ixz="0.0" iyy="0.000002" iyz="0.0" izz="0.000002" />
+    </inertial>
+  </link>
+
+  <joint name="R_WRIST_R" type="revolute">
+    <parent link="R_FOREARM_LINK" />
+    <child link="R_WRIST_R_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0. -0.25" />
+    <axis xyz="1 0 0" />
+    <limit effort="100" lower="-1.5" upper="1.5" velocity="100" />
+  </joint>
+
+  <link name="R_WRIST_P_LINK">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.05" />
+      <inertia ixx="0.000002" ixy="0.0" ixz="0.0" iyy="0.000002" iyz="0.0" izz="0.000002" />
+    </inertial>
+  </link>
+
+  <joint name="R_WRIST_P" type="revolute">
+    <parent link="R_WRIST_R_LINK" />
+    <child link="R_WRIST_P_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0. 0. 0." />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-1.5" upper="1.5" velocity="100" />
+  </joint>
+
+  <joint name="R_WRIST_Y" type="revolute">
+    <parent link="R_WRIST_P_LINK" />
+    <child link="R_HAND_LINK" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0." />
+    <axis xyz="0 0 1" />
+    <limit effort="100" lower="-0.35" upper="0.35" velocity="100" />
+  </joint>
+
+</robot>
